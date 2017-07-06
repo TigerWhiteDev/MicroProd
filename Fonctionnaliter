@@ -1,0 +1,42 @@
+
+
+RINYX
+
+Liste des differente fonctionnaliter que le framework/cms devra implementer:
+
+- Tout les fichier de config en YAML
+- Arboressence separent frontend est backend
+- Possibiliter d'utiliser n'importe quel type de base de donner ( mongodb , cassendra , mysql) => ORM
+- Possibiliter d'envoyer les app sur differrent serveur et de les separer en 2 partie frontend et backend.
+- Possibiliter de developper chaque application avec un langage different.( combinaison front et back prevue)
+
+- Possibiliter de realiser autre chose que des plateforme web ( software microservice (electron)
+ , application (ionic) )
+
+- l'associer a un soft / ou rajouter un plugin cappable de gerer la creation de container docker
+			- generation de dockerfile automatique
+			- generation de docker-compose automanique
+
+- gestion de depandence indepandant pour chaque service (ex 1 package.json par service)
+
+- gestion des test unitaire au niveaux de chaque service et de l'application entiére
+
+
+
+###### Specification #########
+
+###Commande###
+
+rinyx install ( install toute les depence necessaire pour le fonctionnement du framework et des service)
+rinyx generate "name of service or application" -language lang -backend | -frontend
+rinyx generate module application -backend | -frontend
+rinyx build (build tous les service)
+rinyx start ( demarer en mode dev)
+rinyx stop ( stopper le mode dev)
+rinyx deploy -targz|-docker ( genere les dockerfile + le docker compose)
+
+###Appel librairie###
+
+rinyx.model.NameEntity
+rinyx.settings.NameSettingsfile
+rinyx.storage.NameStorage

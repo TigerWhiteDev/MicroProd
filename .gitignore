@@ -11,4 +11,9 @@
 *.out
 
 # Project-local glide cache, RE: https://github.com/Masterminds/glide/issues/736
-.glide/
+**/.glide/*
+**/.idea/*
+**/.vscode/*
+storage/*
+vendor/*
+Project/*
