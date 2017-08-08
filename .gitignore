@@ -16,4 +16,5 @@
 **/.vscode/*
 storage/*
 vendor/*
-Project/*
+project/backoffice/*/*
+project/front/*/*

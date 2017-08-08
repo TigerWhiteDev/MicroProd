@@ -11,7 +11,7 @@ Liste des differente fonctionnaliter que le framework/cms devra implementer:
 - Possibiliter de developper chaque application avec un langage different.( combinaison front et back prevue)
 
 - Possibiliter de realiser autre chose que des plateforme web ( software microservice (electron)
- , application (ionic) )
+ , application (ionic , react) )
 
 - l'associer a un soft / ou rajouter un plugin cappable de gerer la creation de container docker
 			- generation de dockerfile automatique
@@ -29,7 +29,7 @@ Liste des differente fonctionnaliter que le framework/cms devra implementer:
 
 rinyx install ( install toute les depence necessaire pour le fonctionnement du framework et des service)
 rinyx generate "name of service or application" -language lang -backend | -frontend
-rinyx generate module application -backend | -frontend
+rinyx generate module "name of service or application" "name of module" -backend | -frontend
 rinyx build (build tous les service)
 rinyx start ( demarer en mode dev)
 rinyx stop ( stopper le mode dev)
