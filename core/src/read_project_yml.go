@@ -6,12 +6,12 @@ import (
 	"log"
 )
 
-type cgenerate struct {
+type cproject struct {
 	Type string `yaml:"type"`
 	Lang string `yaml:"lang"`
 }
 
-func (c *cgenerate) getConf(file string) *cgenerate {
+func (c *cproject) getConf(file string) *cproject {
 
 	yamlFile, err := ioutil.ReadFile(file)
 	if err != nil {

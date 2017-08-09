@@ -18,3 +18,4 @@ storage/*
 vendor/*
 project/backoffice/*/*
 project/front/*/*
+settings/project/*

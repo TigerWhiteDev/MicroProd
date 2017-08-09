@@ -45,43 +45,49 @@ func main() {
 
 func generate(args []string) {
 
-	var c cgenerate
+	var c cproject
+	if args != nil && len(args) > 0 {
 
-	files, _ := ioutil.ReadDir("settings")
-	for _, f := range files {
-		if f.Name() != "core" && f.Name() != "settings.md" {
-			c.getConf("settings/" + f.Name() + "/" + f.Name() + ".yml")
-			name := f.Name()
-			if c.Type == "service" {
-				fmt.Println("create service")
-				os.Mkdir("storage/"+name, 0777)
-				os.Mkdir("project/backoffice/"+name, 0777)
-				os.Chdir("project/backoffice/" + name)
-				os.Symlink("../../../settings/"+name, "settings")
-				os.Symlink("../../../storage/"+name, "storage")
-			} else if args[0] == "application" {
-				fmt.Println("create application")
-				os.Mkdir("storage/"+name, 0777)
-				os.Mkdir("project/front/"+name, 0777)
-				os.Chdir("project/front/" + name)
-				os.Symlink("../../../settings/"+name, "settings")
-				os.Symlink("../../../storage/"+name, "storage")
-			} else {
-				fmt.Println("generate type config is not valide")
-			}
-			genvendor(c.Lang)
+		for _, arg := range args {
+			gendprojet(c, arg)
 		}
-	}
-	/*if len(args) > 0 {
-
-		var name string
+		/*var name string
 		if args[0] == "module" {
 			fmt.Println("create module on project")
 
+		}*/
+	} else {
+
+		files, _ := ioutil.ReadDir("settings/project/")
+		for _, f := range files {
+			name := f.Name()
+			gendprojet(c, name)
 		}
+	}
 
-	}*/
+}
+func gendprojet(c cproject, name string) {
 
+	c.getConf("settings/project/" + name + "/" + name + ".yml")
+	if c.Type == "service" {
+		fmt.Println("create service")
+		os.Mkdir("storage/"+name, 0777)
+		os.Mkdir("project/backoffice/"+name, 0777)
+		os.Chdir("project/backoffice/" + name)
+		os.Symlink("../../../settings/project/"+name, "settings")
+		os.Symlink("../../../storage/"+name, "storage")
+	} else if c.Type == "application" {
+		fmt.Println("create application")
+		os.Mkdir("storage/"+name, 0777)
+		os.Mkdir("project/front/"+name, 0777)
+		os.Chdir("project/front/" + name)
+		os.Symlink("../../../settings/project/"+name, "settings")
+		os.Symlink("../../../storage/"+name, "storage")
+	} else {
+		fmt.Println("generate type config is not valide")
+	}
+	genvendor(c.Lang)
+	os.Chdir("../../..")
 }
 
 func genvendor(lang string) {
