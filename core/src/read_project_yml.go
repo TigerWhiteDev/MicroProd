@@ -9,6 +9,7 @@ import (
 type cproject struct {
 	Type string `yaml:"type"`
 	Lang string `yaml:"lang"`
+	Git  string `yaml:"git"`
 }
 
 func (c *cproject) getConf(file string) *cproject {

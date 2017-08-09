@@ -1,9 +1,13 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"os"
+	"os/exec"
+	"strings"
 )
 
 func main() {
@@ -49,7 +53,12 @@ func generate(args []string) {
 	if args != nil && len(args) > 0 {
 
 		for _, arg := range args {
-			gendprojet(c, arg)
+			if _, err := os.Stat("settings/project/" + arg + "/" + arg + ".yml"); !os.IsNotExist(err) {
+				gendprojet(c, arg)
+			} else {
+				fmt.Println("settings of project " + arg + " not exist")
+			}
+
 		}
 		/*var name string
 		if args[0] == "module" {
@@ -66,17 +75,25 @@ func generate(args []string) {
 	}
 
 }
+
 func gendprojet(c cproject, name string) {
 
 	c.getConf("settings/project/" + name + "/" + name + ".yml")
+
 	if c.Type == "service" {
-		fmt.Println("create service")
+		if c.Git != "" {
+			gitclone(c.Git, "project/backoffice/")
+		}
 		os.Mkdir("storage/"+name, 0777)
 		os.Mkdir("project/backoffice/"+name, 0777)
 		os.Chdir("project/backoffice/" + name)
 		os.Symlink("../../../settings/project/"+name, "settings")
 		os.Symlink("../../../storage/"+name, "storage")
+		fmt.Println("create service")
 	} else if c.Type == "application" {
+		if c.Git != "" {
+			gitclone(c.Git, "project/front/")
+		}
 		fmt.Println("create application")
 		os.Mkdir("storage/"+name, 0777)
 		os.Mkdir("project/front/"+name, 0777)
@@ -88,6 +105,19 @@ func gendprojet(c cproject, name string) {
 	}
 	genvendor(c.Lang)
 	os.Chdir("../../..")
+}
+func gitclone(git string, dest string) {
+	os.Chdir(dest)
+	cmd := exec.Command("git", "clone", git)
+	cmd.Stdin = strings.NewReader("some input")
+	var out bytes.Buffer
+	cmd.Stdout = &out
+	err := cmd.Run()
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf(out.String())
+	os.Chdir("../../")
 }
 
 func genvendor(lang string) {
