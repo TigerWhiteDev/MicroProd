@@ -10,8 +10,10 @@ import (
 	"strings"
 )
 
-func main() {
+import docker "modules/docker"
 
+func main() {
+	docker.Affiche()
 	/*argsWithProg := os.Args
 	argsWithoutProg := os.Args[1:]
 

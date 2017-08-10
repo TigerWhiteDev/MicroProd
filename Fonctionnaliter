@@ -30,12 +30,12 @@ Liste des differente fonctionnaliter que le framework/cms devra implementer:
 rinyx install ( install toute les depence necessaire pour le fonctionnement du framework et des service)
 rinyx generate [name of service or application] # utilise le fichier de config du projet
 rinyx build (build tous les service)
-rinyx start ( demarer en mode dev)
-rinyx stop ( stopper le mode dev)
-rinyx deploy -targz|-docker ( genere les dockerfile + le docker compose)
+rinyx start ( demarer en mode dev dans des contenaire docker)
+rinyx stop ( stopper le mode dev dans des contenaire docker)
+rinyx deploy -targz|-docker ( genere les dockerfile(de prod) + le docker compose)
 
 ###Appel librairie###
 
 rinyx.model.NameEntity
-rinyx.settings.NameSettingsfile
-rinyx.storage.NameStorage
+// fonctionnaliter supperficiel //rinyx.settings.NameSettingsfile
+// fonctionnaliter supperficiel //rinyx.storage.NameStorage
