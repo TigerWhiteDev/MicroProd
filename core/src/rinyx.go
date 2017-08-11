@@ -10,10 +10,10 @@ import (
 	"strings"
 )
 
-import docker "modules/docker"
+//import docker "modules/docker"
 
 func main() {
-	docker.Affiche()
+	//docker.Affiche()
 	/*argsWithProg := os.Args
 	argsWithoutProg := os.Args[1:]
 
@@ -149,6 +149,11 @@ func install() {
 		os.Mkdir(folder, 0777)
 	}
 	folder = "vendor"
+	if _, err := os.Stat(folder); os.IsNotExist(err) {
+		os.Mkdir(folder, 0777)
+	}
+
+	folder = "settings/project"
 	if _, err := os.Stat(folder); os.IsNotExist(err) {
 		os.Mkdir(folder, 0777)
 	}
