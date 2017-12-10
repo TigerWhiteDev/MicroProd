@@ -8,8 +8,8 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	"read_yml"
 )
-
 //import docker "modules/docker"
 
 func main() {
@@ -64,7 +64,7 @@ func help(){
 
 func generate(args []string) {
 
-	var c cproject
+	 c := readyml.Project{}
 	if args != nil && len(args) > 0 {
 
 		for _, arg := range args {
@@ -91,9 +91,9 @@ func generate(args []string) {
 
 }
 
-func gendprojet(c cproject, name string) {  /*Generate directory for  project*/
+func gendprojet(c readyml.Project, name string) {  /*Generate directory for  project*/
 
-	c.getConf("settings/project/" + name + "/" + name + ".yml")
+	c.GetConf("settings/project/" + name + "/" + name + ".yml")
 
 	if c.Type == "service" {
 		if c.Git != "" {
@@ -105,11 +105,11 @@ func gendprojet(c cproject, name string) {  /*Generate directory for  project*/
 		os.Symlink("../../../settings/project/"+name, "settings")
 		os.Symlink("../../../storage/"+name, "storage")
 		fmt.Println("create service")
-	} else if c.Type == "application" {
+	} else if c.Type == "client" {
 		if c.Git != "" {
 			gitclone(c.Git, "project/front/")
 		}
-		fmt.Println("create application")
+		fmt.Println("create client")
 		os.Mkdir("storage/"+name, 0777)
 		os.Mkdir("project/front/"+name, 0777)
 		os.Chdir("project/front/" + name)
@@ -136,19 +136,14 @@ func gitclone(git string, dest string) {
 }
 
 func genvendor(lang string) {
-	switch lang {
-	case "nodejs":
-		if _, err := os.Stat("../../../vendor/nodejs"); os.IsNotExist(err) {
-			os.Mkdir("../../../vendor/nodejs", 0777)
+	lc := readyml.Lang{}
+	if _, err := os.Stat("../../../settings/core/Lang/"+lang+".yml"); err == nil {
+		lc.GetConf("../../../settings/core/Lang/"+lang+".yml")
+		if _, err := os.Stat("../../../vendor/"+lang); os.IsNotExist(err) {
+			os.Mkdir("../../../vendor/"+lang, 0777)
 		}
-		os.Symlink("../../../vendor/nodejs", "node_modules")
-	case "php":
-		if _, err := os.Stat("../../../vendor/php"); os.IsNotExist(err) {
-			os.Mkdir("../../../vendor/php", 0777)
-		}
-		os.Symlink("../../../vendor/php", "vendor")
-
-	default:
+		os.Symlink("../../../vendor/"+lang, lc.Vendor)
+	} else {
 		fmt.Println("not language supported")
 	}
 }

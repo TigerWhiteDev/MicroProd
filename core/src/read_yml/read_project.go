@@ -1,4 +1,4 @@
-package main
+package readyml
 
 import (
 	"gopkg.in/yaml.v2"
@@ -6,13 +6,13 @@ import (
 	"log"
 )
 
-type cproject struct {
+type Project struct {
 	Type string `yaml:"type"`
 	Lang string `yaml:"lang"`
 	Git  string `yaml:"git"`
 }
 
-func (c *cproject) getConf(file string) *cproject {
+func (c *Project) GetConf(file string) *Project {
 
 	yamlFile, err := ioutil.ReadFile(file)
 	if err != nil {
