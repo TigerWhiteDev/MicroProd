@@ -18,9 +18,8 @@
 
 ### Command
 ```
-rinyx install ( install all depency of framwork and services)
-rinyx generate application -language lang -backend | -frontend
-rinyx generate module application -backend | -frontend
+rinyx init ( init the new project)
+rinyx generate [name of service or application] # use the config project files
 rinyx build (build all service)
 rinyx start ( run mode dev)
 rinyx stop ( stop mode dev)

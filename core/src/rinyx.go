@@ -26,8 +26,8 @@ func main() {
 
 	if len(os.Args) > 1 {
 		switch os.Args[1] {
-		case "install":
-			install()
+		case "init":
+			initiallisation()
 		case "generate":
 			generate(os.Args[2:])
 		case "build":
@@ -36,17 +36,30 @@ func main() {
 			fmt.Println("start serveur dev")
 		case "stop":
 			fmt.Println("stop serveur dev")
-
 		case "deploy":
 			fmt.Println("deploy project")
+		case "help":
+			help()
+
 		default:
-			fmt.Println(os.Args[1] + " commande not know")
+			help()
 		}
 
 	} else {
-		fmt.Println("You must specify one of the command")
+		help()
 	}
 
+}
+
+func help(){
+	fmt.Println("this is help for use Rinix framework")
+	fmt.Println("rinyx init (init the new Project")
+	fmt.Println("rinyx generate application -language lang -backend | -frontend")
+	fmt.Println("rinyx generate module application -backend | -frontend")
+	fmt.Println("rinyx build (build all service)")
+	fmt.Println("rinyx start ( run mode dev)")
+	fmt.Println("rinyx stop ( stop mode dev)")
+	fmt.Println("rinyx deploy -targz|-docker ( generate  dockerfile and docker-compose.yml or tar.gz )")
 }
 
 func generate(args []string) {
@@ -78,7 +91,7 @@ func generate(args []string) {
 
 }
 
-func gendprojet(c cproject, name string) {
+func gendprojet(c cproject, name string) {  /*Generate directory for  project*/
 
 	c.getConf("settings/project/" + name + "/" + name + ".yml")
 
@@ -140,24 +153,16 @@ func genvendor(lang string) {
 	}
 }
 
-func install() {
+func initiallisation() {
 
-	fmt.Println("install")
-	var folder string
-	folder = "storage"
-	if _, err := os.Stat(folder); os.IsNotExist(err) {
-		os.Mkdir(folder, 0777)
-	}
-	folder = "vendor"
-	if _, err := os.Stat(folder); os.IsNotExist(err) {
-		os.Mkdir(folder, 0777)
-	}
+	fmt.Println("init")
+	folders := []string { "models","project","project/backoffice","project/front","settings","settings/project","settings/core","storage","vendor" }
 
-	folder = "settings/project"
-	if _, err := os.Stat(folder); os.IsNotExist(err) {
-		os.Mkdir(folder, 0777)
-	}
-
+	for _, folder := range folders {
+        if _, err := os.Stat(folder); os.IsNotExist(err) {
+			os.Mkdir(folder, 0777)
+		}
+    }
 	generate(nil)
 
 }
