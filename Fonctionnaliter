@@ -1,6 +1,6 @@
 
 
-RINYX
+MicroProd
 
 Liste des differente fonctionnaliter que le framework/cms devra implementer:
 
@@ -27,15 +27,15 @@ Liste des differente fonctionnaliter que le framework/cms devra implementer:
 
 ###Commande###
 
-rinyx install ( install toute les depence necessaire pour le fonctionnement du framework et des service)
-rinyx generate [name of service or application] # utilise le fichier de config du projet
-rinyx build (build tous les service)
-rinyx start ( demarer en mode dev dans des contenaire docker)
-rinyx stop ( stopper le mode dev dans des contenaire docker)
-rinyx deploy -targz|-docker ( genere les dockerfile(de prod) + le docker compose)
+microprod init ( init initialiser un nouveaux project)
+microprod generate [name of service or application] # utilise le fichier de config du projet
+microprod build (build tous les service)
+microprod start ( demarer en mode dev dans des contenaire docker)
+microprod stop ( stopper le mode dev dans des contenaire docker)
+microprod deploy -targz|-docker ( genere les dockerfile(de prod) + le docker compose)
 
 ###Appel librairie###
 
-rinyx.model.NameEntity
-// fonctionnaliter supperficiel //rinyx.settings.NameSettingsfile
-// fonctionnaliter supperficiel //rinyx.storage.NameStorage
+microprod.model.NameEntity
+// fonctionnaliter supperficiel //microprod.settings.NameSettingsfile
+// fonctionnaliter supperficiel //microprod.storage.NameStorage

@@ -5,4 +5,4 @@ then
 fi
 cd core/src/
 go build .
-mv src ../../rinyx
+mv src ../../microprod

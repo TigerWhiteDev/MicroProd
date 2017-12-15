@@ -53,13 +53,13 @@ func main() {
 
 func help(){
 	fmt.Println("this is help for use Rinix framework")
-	fmt.Println("rinyx init (init the new Project")
-	fmt.Println("rinyx generate application -language lang -backend | -frontend")
-	fmt.Println("rinyx generate module application -backend | -frontend")
-	fmt.Println("rinyx build (build all service)")
-	fmt.Println("rinyx start ( run mode dev)")
-	fmt.Println("rinyx stop ( stop mode dev)")
-	fmt.Println("rinyx deploy -targz|-docker ( generate  dockerfile and docker-compose.yml or tar.gz )")
+	fmt.Println("microprod init (init the new Project")
+	fmt.Println("microprod generate application -language lang -backend | -frontend")
+	fmt.Println("microprod generate module application -backend | -frontend")
+	fmt.Println("microprod build (build all service)")
+	fmt.Println("microprod start ( run mode dev)")
+	fmt.Println("microprod stop ( stop mode dev)")
+	fmt.Println("microprod deploy -targz|-docker ( generate  dockerfile and docker-compose.yml or tar.gz )")
 }
 
 func generate(args []string) {
@@ -151,7 +151,7 @@ func genvendor(lang string) {
 func initiallisation() {
 
 	fmt.Println("init")
-	folders := []string { "models","project","project/backoffice","project/front","settings","settings/project","settings/core","storage","vendor" }
+	folders := []string { "project","project/backoffice","project/front","settings","settings/project","settings/core","storage","vendor" }
 
 	for _, folder := range folders {
         if _, err := os.Stat(folder); os.IsNotExist(err) {

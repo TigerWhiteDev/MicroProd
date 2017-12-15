@@ -1,1 +1,0 @@
-# Doccumentation of deffinition rinyx model
