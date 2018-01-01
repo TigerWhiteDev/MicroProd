@@ -19,3 +19,4 @@ vendor/*
 project/backoffice/*/*
 project/front/*/*
 settings/project/*
+core/src/vendor/*
